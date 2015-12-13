@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 将工程名前缀放到page域中，默认也是放在page域中 -->
+<c:set value="${pageContext.request.contextPath}/cardManagement" var="prourl" scope="page"/>
+<c:set value="${pageContext.request.contextPath}/phone" var="phone" scope="page"/>
+<c:set value="${pageContext.request.contextPath}" var="pro" property="page"/>
+<link rel="stylesheet" type="text/css" href="${pro}/css/bootstrap.min.css">
+<script type="text/javascript" src="${pro}/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="${pro}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pro}/js/voucher.js"></script>
+<link rel="stylesheet" type="text/css" href="${pro}/css/style.css">
+</head>
+<body>
+<input type="hidden" value="${pageContext.request.contextPath}" name="projectName" id="projectName">
+</body>
+</html>

@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    font: 12px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;
+    color: #444;
+}
+body{
+	background: #EFEDF3;
+}
+ul li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+input, select, textarea, span,  button, ul, li {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 4px !important;
+}
+/*   卡券核销   */
+
+/*   header   */
+.header{
+	width:100%;
+	min-height: 50px;
+	background-color: #222;
+    border-color: #080808;
+    position:relative;
+}
+.headerL{
+	display:block;
+	height:23px;
+	width: 22px;
+	background: url(../img/topL.png) no-repeat center;
+	position:absolute;
+	top:12px;
+	left:20px;
+}
+.headerC{
+	display:block;
+	color:#fff;
+	font-size:24px;
+	text-align:center;
+	height:36px;
+	width:140px;
+	line-height:36px;
+	position: absolute;
+	top:6px;
+	left:58px;
+	border-left:2px solid #0F1719;
+}
+.headerR{
+	display: block;
+	height:25px;
+	width:6px;
+	background: url(../img/topR.png) no-repeat center;
+	background-size:cover;
+	position: absolute;
+	top:14px;
+	right:20px;
+}
+/*   body   */
+.Search{
+	height:80px;
+	padding-top:24px;
+	width:100%;
+	background: #EFEDF3;
+}
+.inp{
+	position: relative;
+	height:49px;
+	width:91.6%;
+	border:1px solid #D4D4D6;
+	margin-left:4.4%;
+	border-radius: 5px;
+}
+.Search_Inp{
+	float: left;
+	height:100%;
+	width:82.8%;
+	border:none;
+	background:#fff;
+	outline:none;
+	padding-left:3%;
+	color:#A4A4A4;
+	font-size:18px;
+}
+.Search_Btn{
+	float: left;
+	height:100%;
+	width:17.2%;
+	background: #03BF01 url(../images/search.png) no-repeat center;
+	border:none;
+	outline:none;
+}
+/*   footer   */
+.footer{
+	min-height:400px;
+	width:80%;
+	margin-left:10%;
+}
+.footer h2{
+	margin-top:20px;
+	font-size:24px;
+	color:#000;
+	font-weight:800;
+}
+.footer p{
+	font-size:20px;
+	color:#A4A4A4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

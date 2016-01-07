@@ -4,9 +4,7 @@
 <html>
 <head>
 <title>优惠详情</title>
-<%@ include file="/pages/public/header.jspf"%>
-<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi, user-scalable=no"/>
-<meta name="format-detection" content="telephone=no" />
+<%@ include file="/pages/public/phone.jspf"%>
  <style>
         h4{font-size: 14px;}
     </style>

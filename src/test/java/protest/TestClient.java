@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.cnleyao.dto.Shop;
 import com.cnleyao.utils.ApacheHttpClient;
 import com.cnleyao.utils.HttpResponse;
@@ -58,7 +59,12 @@ public class TestClient {
 	}
 	@Test
 	public void test5(){
-		Integer in ;
+		//http://114.215.138.165/api/access_token
+		ApacheHttpClient httpClient  = new ApacheHttpClient(); 
+		HttpResponse response = httpClient.get("http://i.cnleyao.com/api/access_token");
+		String str = response.getResponse();
+		JSONObject jsonObject = JSONObject.parseObject(str);
+		System.out.println("ttttttttt"+jsonObject.getString("access_token"));
 		
 	}
 

@@ -2,13 +2,17 @@ package com.cnleyao.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.cnleyao.Message;
 import com.cnleyao.dto.Shop;
 import com.cnleyao.entity.CardVoucher;
@@ -24,14 +28,32 @@ public class PhoneController extends BaseController{
 	private VoucherManageServiceI vService;
 	@Autowired
 	private UserVoucherServiceI uService;
+	//微信的APPID和
+	public static final String APPID = "wxa316d1ce30f2c952";
+	public static final String SECRET = "0d08df1b5bd02849588b3083ad4ef56d";
+	/**
+	 * 引导用户授权获取用户的openID，
+	 * */
+	@RequestMapping(value="/oauthUser/{voucherId}")
+	public String oauthUser(@PathVariable Long voucherId,String code,String state,RedirectAttributes rAtt){
+		String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+		String rUrl = url.replace("APPID", APPID)//
+				.replace("SECRET", SECRET)//
+				.replace("CODE", code);
+		String data = getHttpData(rUrl);
+		JSONObject jsonObject = JSONObject.parseObject(data);
+		//将领取卡券的openid转换成userId
+		String userId = jsonObject.getString("openid");
+		rAtt.addAttribute("voucherId", voucherId);
+		rAtt.addAttribute("userId", userId);
+		return "redirect:/phone/getVoucherTemplate";
 
-
+	}
 	/**
 	 * 获取卡券模板(查看卡券模板就提示用户，你是否已经领取，是否有权限领取)
 	 * */
 	@RequestMapping("/getVoucherTemplate")
 	public String getVoucherTemplate(String userId,Long voucherId,Model model){
-		//TODO 此方法涉及到领取后显示code亦或是二维码
 		CardVoucher voucher = vService.getVoucher(voucherId);
 		//根据用户的id和模板id查看此用户是否已经获取了卡券
 		UserVoucher userVoucher = uService.findUserVoucher(userId,voucherId);
@@ -40,19 +62,44 @@ public class PhoneController extends BaseController{
 		}
 		model.addAttribute("voucher", voucher);
 		model.addAttribute("userId", userId);
-		return "pages/manage/getVoucher_Phone";
+
+		return "pages/manage/qCodeVec_Phone";
+
 	}
 	/**
+	 * 1,先判断用户是否已经关注了公众号
+	 * 如果用户没有关注公众号则要引导用户关注
 	 * 用户获取卡券的接口(创建卡券并返回卡券的code)
 	 * */
 	@RequestMapping("/acquireVoucher")
 	public @ResponseBody
-	long acquireVoucher(String userId,Long voucherId,Model model){
-		
-		return uService.acquireVoucher(userId,voucherId);
-	
+	int acquireVoucher(String userId,Long voucherId,Model model){
+		int isf = focusGZH(userId);
+		model.addAttribute("isf", isf);
+		uService.acquireVoucher(userId,voucherId);
+		return isf;
 	}
 
+	/**
+	 * 判断用户是否关注公众号
+	 * */
+	private Integer focusGZH(String userId) {
+		String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+		String rUrl = url.replace("ACCESS_TOKEN", getAccessToken())//
+				.replace("OPENID", userId);
+		String rText = getHttpData(rUrl);
+		JSONObject jsonObject = JSONObject.parseObject(rText);
+		return jsonObject.getInteger("subscribe");
+	}
+	/**
+	 * 获取accesstoken
+	 * **/
+	private String getAccessToken() {
+		String tokenDate = getHttpData("http://i.cnleyao.com/api/access_token");
+		JSONObject jsonObject = JSONObject.parseObject(tokenDate);
+
+		return jsonObject.getString("access_token");
+	}
 	/**
 	 * 微信端获取卡券的详细使用信息
 	 * **/
@@ -88,6 +135,7 @@ public class PhoneController extends BaseController{
 	public String verificVoucher(UserVoucher userVoucher,Model model){
 		CardVoucher voucher = uService.getVoucherByCode(userVoucher);
 		model.addAttribute("voucher", voucher);
+		model.addAttribute("code", userVoucher.getCode());
 		return "pages/manage/verific_phone";
 
 	}
@@ -116,6 +164,7 @@ public class PhoneController extends BaseController{
 	public String seeVoucherBag(String userId,Model model){
 		List<CardVoucher> vouchers = uService.getVoucherByUid(userId);
 		model.addAttribute("vouchers", vouchers);
+		model.addAttribute("userId",userId);
 		return "pages/manage/voucherBag_phone";
 	}
 	/**
@@ -131,4 +180,19 @@ public class PhoneController extends BaseController{
 		}
 		return store;
 	}
+
+	/**
+	 * 查看卡包卡券的详细及核销码
+	 * **/
+	@RequestMapping("/seeVDetails")
+	public String seeVDetails(Long voucherId,String userId,Model model){
+		CardVoucher voucher = vService.getVoucher(voucherId);
+		Long code = uService.acquireVoucher(userId,voucherId);
+		model.addAttribute("voucher",voucher);
+		model.addAttribute("code", code);
+		return "pages/manage/seeVDetails_phone";
+
+	}
+
+
 }

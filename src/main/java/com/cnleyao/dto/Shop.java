@@ -8,8 +8,11 @@ public class Shop implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private Long id;
+	/**
+	 * 原本id是long类型的，但是考虑到long类型
+	 * 的数据用jquery进行解析会损失精度
+	 * */
+	private String id;
 	private String name;
 	
 	public String getName() {
@@ -18,11 +21,16 @@ public class Shop implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getId() {
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+	@Override
+	public String toString() {
+		return "Shop [id=" + id + ", name=" + name + "]";
 	}
 	
 	

@@ -14,7 +14,8 @@ package com.cnleyao;
  * @version 1.0
  */
 public abstract class Message {
-
+	
+	
 	/**
 	 * 类型
 	 */

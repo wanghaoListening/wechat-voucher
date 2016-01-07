@@ -1,0 +1,10 @@
+
+<!--   搜索框   -->
+<div class="Search">
+	<div class="inp">
+			<input style="font-size: 18px; color: #000;" class="Search_Inp"
+				type="text" id="searchvalue" name="code"/> <input class="Search_Btn"
+				type="submit" value=""/> <input type="hidden" value="${userId}"
+				name="userId"> <span onclick="clearvalue()"></span>
+	</div>
+</div>

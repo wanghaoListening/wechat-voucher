@@ -2,7 +2,6 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../config/ehcache.xsd" updateCheck="false" >
 	<!-- hibernate二级缓存存放的地方是D:/ehcache-->
 	<diskStore path="D:/ehcache" />
-	
 	<!-- DefaultCache setting. -->
      <defaultCache
             maxElementsInMemory="1000"

@@ -33,7 +33,7 @@
 		<!-- <property name="poolPreparedStatements" value="true" /> <property name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
 		
 		<property name="validationQuery" value="${validationQuery}" />
-		<property name="testOnBorrow" value="false" />
+		<property name="testOnBorrow" value="true" />
 		<property name="testOnReturn" value="false" />
 		<property name="testWhileIdle" value="true" />
 
@@ -86,33 +86,5 @@
 	<!-- 注解方式配置事物 -->
 	<tx:annotation-driven transaction-manager="transactionManager" /> 
 	
-	<!-- 拦截器方式配置事物 -->
-	<!-- <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="append*" propagation="REQUIRED" />
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="modify*" propagation="REQUIRED" />
-			<tx:method name="edit*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="init" propagation="REQUIRED" />
-			<tx:method name="delAndInit" propagation="REQUIRED" />
-			<tx:method name="execute*" propagation="REQUIRED" />
-
-			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
-			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
-			<tx:method name="load*" propagation="REQUIRED" read-only="true" />
-			<tx:method name="search*" propagation="REQUIRED" read-only="true" />
-			<tx:method name="datagrid*" propagation="REQUIRED" read-only="true" />
-
-			<tx:method name="*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* com.*.service..*impl.*.*(..))" />
-		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
-	</aop:config> -->
 
 </beans>

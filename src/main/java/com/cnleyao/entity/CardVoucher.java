@@ -89,7 +89,7 @@ public class CardVoucher implements CardBaseInfo,Serializable{
 	public void setVoucherId(Long voucherId) {
 		this.voucherId = voucherId;
 	}
-	
+	@Column(length=25)
 	public String getName() {
 		return name;
 	}
@@ -105,26 +105,25 @@ public class CardVoucher implements CardBaseInfo,Serializable{
 	public void setBusinessId(Long businessId) {
 		this.businessId = businessId;
 	}
-
+	@Column(length=25)
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	@Column(length=30)
 	public String getSubtitle() {
 		return subtitle;
 	}
 	public void setSubtitle(String subtitle) {
 		this.subtitle = subtitle;
 	}	
-	
+	@Column(length=10)
 	public String getBackground() {
 		return background;
 	}
-	
-	public void setBackground(String background) {
+		public void setBackground(String background) {
 		this.background = background;
 	}
 	
@@ -135,24 +134,24 @@ public class CardVoucher implements CardBaseInfo,Serializable{
 		this.state = state;
 	}
 	
-	//时间采用timestamp类型
-	@Temporal(TemporalType.TIMESTAMP)
+	//只存储年月日
+	@Temporal(TemporalType.DATE)
 	public Date getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
-	//时间采用timestamp类型
-	@Temporal(TemporalType.TIMESTAMP)
+	//只存储年月日
+	@Temporal(TemporalType.DATE)
 	public Date getEndTime() {
 		return endTime;
 	}
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	//时间采用timestamp类型
-	@Temporal(TemporalType.TIMESTAMP)
+	//只存储年月日
+	@Temporal(TemporalType.DATE)
 	public Date getDeadlineTime() {
 		return deadlineTime;
 	}
@@ -166,6 +165,7 @@ public class CardVoucher implements CardBaseInfo,Serializable{
 	public void setBatchvoucher(Set<UserVoucher> batchvoucher) {
 		this.batchvoucher = batchvoucher;
 	}
+	@Column(length=15)
 	public String getGiftName() {
 		return giftName;
 	}
@@ -201,7 +201,7 @@ public class CardVoucher implements CardBaseInfo,Serializable{
 	public void setAdaptedStore(String adaptedStore) {
 		this.adaptedStore = adaptedStore;
 	}
-	
+	@Column(length=20)
 	public String getPhone() {
 		return phone;
 	}

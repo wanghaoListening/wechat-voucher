@@ -30,7 +30,7 @@ public class BaseController {
 	
 	/** "验证结果"参数名称 */
 	private static final String CONSTRAINT_VIOLATIONS_ATTRIBUTE_NAME = "constraintViolations";
-	protected ApacheHttpClient httpClient  = new ApacheHttpClient();
+	protected static ApacheHttpClient httpClient  = new ApacheHttpClient();
 	@Autowired
 	private Validator validator;
 	

@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi, user-scalable=no"/>
-<meta name="format-detection" content="telephone=no" />
-<title>异常</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<font size="16" style="font-family: inherit;" color="red">${message}</font>    
+<center>
+<font size="14px;">欢迎来到卡券主页</font>
+</center>
 </body>
 </html>

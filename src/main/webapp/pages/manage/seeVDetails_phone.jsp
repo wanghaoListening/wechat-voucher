@@ -1,14 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>查看核销码</title>
+</head>
 <%@ include file="/pages/public/phone.jspf"%>
+<script type="text/javascript" src="${pro}/js/jquery.qrcode.min.js"></script>
 <script type="text/javascript" src="${pro}/js/phone.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#qrcode').qrcode({width: 135,height: 135,text: '${code}'});
+	$("li p[id='code']").text(data);
+});
+</script>
 </head>
 <body style="background-color: #f4f5f9;">
 
-	<div class="msg_card" style="background-color: #fff;">
+	<div class="msg_card" style="background-color: #fff;margin-top:-10px;">
 		<div class="msg_card_inner">
 
 			<div class="js_preview msg_card_section shop disabled">
@@ -40,16 +50,16 @@
                 <div class="deco"></div>
             </div>
 			<div>
-					<ul class=" cardactive" style="display: none;" id="vcode">
+					<!--默认隐藏二维码的显示 -->
+					<ul class="cardactive" id="qcode">
 						<li class="active " style="background-color: #fff;">
-							<div
-								style="background-color: #fff !important; border: none; text-align: center; font-size: 18px;">
-								<h1 style="font-size:36px;" class="code"></h1>
-							</div>
+							<div id="qrcode" style="text-align: center;"></div>
+							<p style="text-align: center;letter-spacing:3px; color: #C5C5C5; font-size: 16px;">${code}</p>
 							<p style="text-align: center; color: #C5C5C5; font-size: 18px;">将本页面展示给店员看即可</p>
 						</li>
 
 					</ul>
+			
 				<div style="height: 20px; background-color: #f4f5f9;"></div>
 
 				<div class="list-group ul-li-a" style="border-radius: 0px;">
@@ -63,18 +73,11 @@
 
 				</div>
 
-
 			</div>
 
 		</div>
 	</div>
-		<div class="m10 text-center" style="margin: 10px 10px 10px;">
-			<form id="phoneCode">
-				<input type="hidden" name="voucherId" value="${voucher.voucherId}" />
-				<input type="hidden" name="userId" value="${userId}"/> 
-			</form>
-			<button class="btn btn-block" style="background-color: #44b549;"
-				id="acquireCode">领取卡券</button>
-		</div>
+
+
 </body>
 </html>

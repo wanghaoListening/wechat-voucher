@@ -3,12 +3,15 @@ package com.cnleyao.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 用户实际领到的卡券
@@ -49,8 +52,6 @@ public class UserVoucher implements Serializable{
 		this.id = id;
 	}
 	
-	
-	
 	public UserVoucher() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -81,12 +82,14 @@ public class UserVoucher implements Serializable{
 	public boolean isVerificated() {
 		return isVerificated;
 	}
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getReceiveDate() {
 		return receiveDate;
 	}
 	public void setReceiveDate(Date receiveDate) {
 		this.receiveDate = receiveDate;
 	}
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getUseDate() {
 		return useDate;
 	}
@@ -105,6 +108,7 @@ public class UserVoucher implements Serializable{
 	public void setOwnUse(boolean ownUse) {
 		this.ownUse = ownUse;
 	}
+	@Column(length=15)
 	public Long getCode() {
 		return code;
 	}

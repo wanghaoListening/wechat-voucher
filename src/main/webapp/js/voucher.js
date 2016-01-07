@@ -98,15 +98,12 @@ $(document).ready(function(){
 			url:'findStoresByShop',
 			data:{"businessId":businessId},
 			success:function(data){
-
 				var jsonarray= $.parseJSON(data);
 				//先清空optition
 				$("#adaptform select[name='adaptedStore']").empty();
 				$("#adaptform select[name='adaptedStore']").append("<option value='' selected='selected'>请选择门店</option>");
 				$.each(jsonarray, function (i, n)
 						{	//获取option的个数
-					//var length = $("#adaptform select[name='adaptedStore']")[0].options.length;
-
 					$("#adaptform select[name='adaptedStore']").append("<option value='"+(n.id)+"'>"+(n.name)+"</option>");
 						})
 			}
@@ -279,11 +276,13 @@ $(document).ready(function(){
 		})
 	});
 
+	
 	/**
 	 * 对卡券模板的预览preview
 	 * */
 
 	$("tr a[id='previewVoucher']").click(function(){
+		var projectName = $("input[id='projectName']").val();
 		//根据卡券的id获取卡券模板
 		var voucherId = $(this).attr('name');
 		if(voucherId==null || ""==voucherId){
@@ -451,13 +450,6 @@ $(document).ready(function(){
 				window.myPie = new Chart(ctx).Pie(pieData);
 			};*/
 
-	/********************************微信web端的相关js脚本***************************************/
 
-
-
-	
-	function clearvalue(){
-		document.getElementsById('searchvalue').value="";
-	}
 
 }); 

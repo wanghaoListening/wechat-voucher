@@ -4,28 +4,13 @@
 <html>
 
 <head>
-
-<%@ include file="/pages/public/header.jspf"%>
-
+<%@ include file="/pages/public/phone.jspf"%>
 <link rel="stylesheet" type="text/css" href="${pro}/css/verification.css">
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0,user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
+<script type="text/javascript" src="${pro}/js/phone.js"></script>
 <title>卡券核销</title>
-<link rel="stylesheet" href="css/verification.css" />
 </head>
 <body>
-	
-	<!--   搜索框   -->
-	<div class="Search">
-		<div class="inp">
-			<form action="${phone}/verificVoucher" method="post">
-			<input style="font-size:18px;" class="Search_Inp" type="text" placeholder="请输入优惠券号或会员卡号" name="code"/> <input
-				class="Search_Btn" type="submit" value="${userId}" />
-			</form>
-		</div>
-	</div>
+	<%@ include file="/pages/public/search.jspf"%>
 	<!--   footer   -->
 	<footer class="footer">
 	<h2>第一步、搜索卡券</h2>
